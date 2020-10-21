@@ -39,6 +39,10 @@ public class AKL_Cleaning_Roster {
         ArrayList<String> chapterRoom = new ArrayList<>();
         ArrayList<String> oddJobs = new ArrayList<>();
         ArrayList<String> noJob = new ArrayList<>();
+        ArrayList<String> firstFloorSweep = new ArrayList<>();
+        ArrayList<String> firstFloorSwiffer = new ArrayList<>();
+        ArrayList<String> secondFloorSweep = new ArrayList<>();
+        ArrayList<String> secondFloorSwiffer = new ArrayList<>();
 
         // read from inFile, add all names to ArrayList
         while (scanIn.hasNext()){
@@ -49,8 +53,8 @@ public class AKL_Cleaning_Roster {
         // go thru each item in Members, assign them to job
         for (String item : Members){
             
-            int randoNum = rando.nextInt(9) + 1;
-            
+            int randoNum = rando.nextInt(13) + 1;
+           
             for (int x = 0; x < 2; x++){
                 
                 if (randoNum == 1)
@@ -119,11 +123,44 @@ public class AKL_Cleaning_Roster {
 
                 if (randoNum == 9)
                     if (oddJobs.size() == 5)
-                        randoNum = 1;
+                        randoNum+=1;
                     else {
                         oddJobs.add(item);
                         break;
                     }
+                
+                if (randoNum == 10)
+                    if (firstFloorSweep.size() == 1)
+                        randoNum+=1;
+                    else {
+                        firstFloorSweep.add(item);
+                        break;
+                    }
+                
+                if (randoNum == 11)
+                    if (firstFloorSwiffer.size() == 1)
+                        randoNum+=1;
+                    else {
+                        firstFloorSwiffer.add(item);
+                        break;
+                    }
+                
+                if (randoNum == 12)
+                    if (secondFloorSweep.size() == 1)
+                        randoNum+=1;
+                    else {
+                        secondFloorSweep.add(item);
+                        break;
+                    }
+                
+                if (randoNum == 13)
+                    if (secondFloorSwiffer.size() == 1)
+                        randoNum = 1;
+                    else {
+                        secondFloorSwiffer.add(item);
+                        break;
+                    }
+                
                 if (x == 1)
                     noJob.add(item);
                 }
@@ -138,11 +175,11 @@ public class AKL_Cleaning_Roster {
         for (String item : secondBathroom)
             outFile.write(item + "\n");
         
-        outFile.write("\nsanitize job (3 people recommended):\n");
+        outFile.write("\nSanitize job (3 people recommended):\n");
         for (String item : sanitize)
             outFile.write(item + "\n");
         
-        outFile.write("\nkitchen (4 people recommended):\n");
+        outFile.write("\nKitchen (4 people recommended):\n");
         for (String item : kitchen)
             outFile.write(item + "\n");
         
@@ -160,6 +197,22 @@ public class AKL_Cleaning_Roster {
         
         outFile.write("\nChapter room (1-man job):\n");
         for (String item : chapterRoom)
+            outFile.write(item + "\n");
+        
+        outFile.write("\nFirst floor hallway - sweep (1-man job):\n");
+        for (String item : firstFloorSweep)
+            outFile.write(item + "\n");
+        
+        outFile.write("\nFirst floor hallway - swiffer (1-man job)\n");
+        for (String item : firstFloorSwiffer)
+            outFile.write(item + "\n");
+        
+        outFile.write("\nSecond floor hallway - sweep (1-man job):\n");
+        for (String item : secondFloorSweep)
+            outFile.write(item + "\n");
+        
+        outFile.write("\nSecond floor hallway - swiffer (1-man job)\n");
+        for (String item : secondFloorSwiffer)
             outFile.write(item + "\n");
         
         outFile.write("\nOdd jobs (5 people recommended):\n");
